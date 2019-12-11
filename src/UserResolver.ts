@@ -102,6 +102,12 @@ export class UserResolver {
   }
 
   @Mutation(() => Boolean)
+  async logout(@Ctx() { res }: MyContext) {
+    sendRefreshToken(res, "");
+    return true;
+  }
+
+  @Mutation(() => Boolean)
   async register(
     @Arg("email", () => String) email: string,
     @Arg("password", () => String) password: string
